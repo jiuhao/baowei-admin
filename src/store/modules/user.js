@@ -21,6 +21,9 @@ const user = {
     },
     SET_ROLES: (state, roles) => {
       state.roles = roles
+    },
+    SET_USER: (state, user) => {
+      state.user = user
     }
   },
 
@@ -45,6 +48,7 @@ const user = {
       return new Promise((resolve, reject) => {
         getInfo(state.token).then(response => {
           const data = response.data
+          commit('SET_USER', data)
           commit('SET_ROLES', [data.role])
           commit('SET_NAME', data.nickname)
           commit('SET_AVATAR', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif')

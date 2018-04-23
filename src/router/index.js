@@ -40,27 +40,27 @@ export const constantRouterMap = [
   {
     path: '/permission',
     component: Layout,
-    redirect: '/adm/list',
-    name: 'Example',
+    redirect: '/list',
+    name: 'permission',
     meta: { title: '权限管理', icon: 'component' },
     children: [
       {
-        path: 'user',
-        name: 'Table',
-        component: () => import('@/views/permission/adm'),
-        meta: { title: '管理员列表', icon: 'user' }
+        path: 'list',
+        name: 'list',
+        component: () => import('@/views/permission/index'),
+        meta: { title: '权限列表', icon: 'lock' }
       },
       {
         path: 'role',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: '角色管理', icon: 'people' }
+        name: 'role',
+        component: () => import('@/views/permission/role'),
+        meta: { title: '角色列表', icon: 'people' }
       },
       {
-        path: 'permission',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: '权限管理', icon: 'lock' }
+        path: 'adm',
+        name: 'adm',
+        component: () => import('@/views/permission/adm'),
+        meta: { title: '管理员列表', icon: 'user' }
       }
     ]
   },
