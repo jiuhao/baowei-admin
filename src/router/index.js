@@ -69,13 +69,13 @@ export const constantRouterMap = [
     path: '/artical',
     component: Layout,
     redirect: '/artical/list',
-    name: 'Example',
+    name: 'artical',
     meta: { title: '文章管理', icon: 'form' },
     children: [
       {
         path: 'list',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
+        name: 'list',
+        component: () => import('@/views/article/index'),
         meta: { title: '文章管理', icon: 'form' }
       }
     ]
