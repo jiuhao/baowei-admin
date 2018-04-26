@@ -85,52 +85,68 @@ export const constantRouterMap = [
     path: '/message',
     component: Layout,
     redirect: '/message/list',
-    name: 'Example',
+    name: 'message',
     meta: { title: '留言管理', icon: 'message' },
     children: [
       {
         path: 'list',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
+        name: 'list',
+        component: () => import('@/views/message/list'),
         meta: { title: '留言列表', icon: 'message' }
       },
       {
-        path: 'publish',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
+        path: 'show',
+        name: 'show',
+        component: () => import('@/views/message/show'),
         meta: { title: '显示留言', icon: 'tab' }
       }
     ]
   },
 
-  {
-    path: '/banner',
-    component: Layout,
-    redirect: '/banner/list',
-    name: 'Example',
-    meta: { title: 'banner列表', icon: 'excel' },
-    children: [
-      {
-        path: 'list',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'banner列表', icon: 'excel' }
-      }
-    ]
-  },
+  // {
+  //   path: '/banner',
+  //   component: Layout,
+  //   redirect: '/banner/list',
+  //   name: 'Example',
+  //   meta: { title: 'banner列表', icon: 'excel' },
+  //   children: [
+  //     {
+  //       path: 'list',
+  //       name: 'Table',
+  //       component: () => import('@/views/table/index'),
+  //       meta: { title: 'banner列表', icon: 'excel' }
+  //     }
+  //   ]
+  // },
 
   {
     path: '/items',
     component: Layout,
     redirect: '/items/list',
-    name: 'Example',
-    meta: { title: 'banner列表', icon: 'example' },
+    name: 'items',
+    meta: { title: '栏目管理', icon: 'example' },
     children: [
       {
         path: 'list',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: '栏目管理', icon: 'example' }
+        name: 'list',
+        component: () => import('@/views/items/list'),
+        meta: { title: '栏目列表', icon: 'example' }
+      }
+    ]
+  },
+
+  {
+    path: '/file',
+    component: Layout,
+    redirect: '/file/list',
+    name: 'file',
+    meta: { title: '文件管理', icon: 'zip' },
+    children: [
+      {
+        path: 'list',
+        name: 'list',
+        component: () => import('@/views/file/list'),
+        meta: { title: '文件列表', icon: 'zip' }
       }
     ]
   },

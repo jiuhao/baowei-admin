@@ -3,16 +3,16 @@
     <div class="wrapper">
       <div class="filter-container">
         <div class="filter-item">
-          <label>更新时间：</label>
+          <label>留言日期</label>
           <el-date-picker
-            v-model="listQuery.startTime"
+            v-model="listQuery.start_time"
             type="date"
             size="small"
             placeholder="选择日期">
           </el-date-picker>
           -
           <el-date-picker
-            v-model="listQuery.endTime"
+            v-model="listQuery.end_time"
             type="date"
             size="small"
             placeholder="选择日期">
@@ -20,13 +20,10 @@
         </div>
         <div class="filter-item">
           <label>模糊查询：</label>
-          <el-input  size="small" class="form-input" placeholder="标题／子标题／作者" v-model="listQuery.keyword"></el-input>
+          <el-input  size="small" class="form-input" placeholder="内容／回复" v-model="listQuery.keyword"></el-input>
         </div>
         <div class="filter-item">
           <el-button type="primary" size="small" icon="el-icon-search" @click="handleFilter">查询</el-button>
-        </div>
-        <div class="filter-item">
-          <el-button type="primary" size="small" icon="el-icon-plus">添加</el-button>
         </div>
     </div>
     <el-table :data="list" v-loading.body="listLoading" element-loading-text="Loading" border fit highlight-current-row>
@@ -35,24 +32,14 @@
           {{scope.$index + 1}}
         </template>
       </el-table-column>
-      <el-table-column label="标题" align="center">
+      <el-table-column label="内容" align="center">
         <template slot-scope="scope">
-          {{scope.row.title}}
+          {{scope.row.content}}
         </template>
       </el-table-column>
-      <el-table-column label="子标题"  align="center">
+      <el-table-column label="回复"  align="center">
         <template slot-scope="scope">
-          <span>{{scope.row.subtitle}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="插图" align="center">
-        <template slot-scope="scope">
-          {{scope.row.subimg}}
-        </template>
-      </el-table-column>
-      <el-table-column label="作者" align="center">
-        <template slot-scope="scope">
-          {{scope.row.author_name}}
+          <span>{{scope.row.answer}}</span>
         </template>
       </el-table-column>
       <el-table-column label="是否发布到前台" align="center">
@@ -60,10 +47,10 @@
           {{scope.row.is_public_show | is_public_show_filter}}
         </template>
       </el-table-column>
-      <el-table-column align="center" prop="created_at" label="最后更新时间" width="200">
+      <el-table-column align="center" label="留言时间" width="200">
         <template slot-scope="scope">
           <i class="el-icon-time"></i>
-          <span>{{scope.row.update_time}}</span>
+          <span>{{scope.row.create_time}}</span>
         </template>
       </el-table-column>
     </el-table>
@@ -79,7 +66,7 @@
 </template>
 
 <script>
-import { getList } from '@/api/article'
+import { getList } from '@/api/message'
 
 const is_public_show_options = [
   { label: '否', key: 0 },
