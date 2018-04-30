@@ -26,7 +26,7 @@
           <el-button type="primary" size="small" icon="el-icon-search" @click="handleFilter">查询</el-button>
         </div>
         <div class="filter-item">
-          <el-button type="primary" size="small" icon="el-icon-plus">添加</el-button>
+          <el-button type="primary" size="small" icon="el-icon-plus" ><a href="#/artical/add">添加</a></el-button>
         </div>
     </div>
     <el-table :data="list" v-loading.body="listLoading" element-loading-text="Loading" border fit highlight-current-row>

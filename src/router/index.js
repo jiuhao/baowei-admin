@@ -76,7 +76,14 @@ export const constantRouterMap = [
         path: 'list',
         name: 'list',
         component: () => import('@/views/article/index'),
-        meta: { title: '文章管理', icon: 'form' }
+        meta: { title: '文章列表', icon: 'form' }
+      },
+      {
+        hidden: true,
+        path: 'add',
+        name: 'add',
+        component: () => import('@/views/article/add'),
+        meta: { title: '新增文章' }
       }
     ]
   },
