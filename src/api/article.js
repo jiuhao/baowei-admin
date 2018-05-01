@@ -7,3 +7,11 @@ export function getList(data) {
     data: data
   })
 }
+
+export function add(data) {
+  return request({
+    url: 'admin/article/add',
+    method: 'post',
+    data: data
+  })
+}

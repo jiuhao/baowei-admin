@@ -47,12 +47,17 @@
       </el-table-column>
       <el-table-column label="插图" align="center">
         <template slot-scope="scope">
-          {{scope.row.subimg}}
+          <img style="height: 50px;weight:50px;cursor:pointer" v-if="scope.row.subimg" :src="scope.row.subimg" @click="bigImg(scope.row.subimg)">
         </template>
       </el-table-column>
       <el-table-column label="作者" align="center">
         <template slot-scope="scope">
           {{scope.row.author_name}}
+        </template>
+      </el-table-column>
+      <el-table-column label="所属类型" align="center">
+        <template slot-scope="scope">
+          {{scope.row.type | type_filter}}
         </template>
       </el-table-column>
       <el-table-column label="是否发布到前台" align="center">
@@ -86,7 +91,21 @@ const is_public_show_options = [
   { label: '是', key: 1 }
 ]
 
+const type_options = [
+  { label: '政策法规', key: 1 },
+  { label: '武装部工作', key: 2 },
+  { label: '纠察队建设', key: 3 },
+  { label: '安全知识', key: 4 },
+  { label: '失物招领', key: 5 },
+  { label: '典型案例', key: 6 }
+]
+
 const is_public_show_key_value = is_public_show_options.reduce((acc, cur) => {
+  acc[cur.key] = cur.label
+  return acc
+}, {})
+
+const type_key_value = type_options.reduce((acc, cur) => {
   acc[cur.key] = cur.label
   return acc
 }, {})
@@ -111,6 +130,9 @@ export default {
   filters: {
     is_public_show_filter(value) {
       return is_public_show_key_value[value]
+    },
+    type_filter(value) {
+      return type_key_value[value]
     }
   },
   created() {
@@ -136,6 +158,9 @@ export default {
     handleFilter() {
       this.listQuery.currentPage = 1
       this.getList()
+    },
+    bigImg(path) {
+      window.open(path)
     }
   }
 }

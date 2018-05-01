@@ -76,9 +76,9 @@ export function create() {
   ]
 
   // onchange 事件
-  editor.onchange = function() {
-    console.log(this.$txt.html())
-  }
+  // editor.onchange = function() {
+  //   console.log('内容：', this.$txt.html())
+  // }
 
   // 取消过滤js
   // editor.customConfig.jsFilter = false;
@@ -104,4 +104,6 @@ export function create() {
   editor.create()
   // 初始化编辑器的内容
   // editor.$txt.html('<p>要初始化的内容</p>');
+  console.log('asdsadsasaddsa', editor.txt.html())
+  return editor
 }

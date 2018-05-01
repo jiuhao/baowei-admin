@@ -71,6 +71,9 @@ const user = {
           reject(error)
         })
       })
+      // commit('SET_TOKEN', '')
+      // commit('SET_ROLES', [])
+      // removeToken()
     },
 
     // 前端 登出
