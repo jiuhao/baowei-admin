@@ -54,15 +54,15 @@
                         <el-switch v-model="form.is_public_show"></el-switch>
                     </el-form-item>
                     <el-form-item>
-                        <el-button type="primary" @click="last">上一步</el-button>
-                        <el-button type="primary" @click="add">发布</el-button>
-                        <el-button>取消</el-button>
+                        <el-button type="primary" @click="last" size="small">上一步</el-button>
+                        <el-button type="primary" @click="add" size="small">发布</el-button>
+                        <el-button size="small">取消</el-button>
                     </el-form-item>
-                    </el-form>
+                </el-form>
             </div>
             <div v-show="active === 2" >
                 <a style="color:#409EFF;display:block">发布完成，点我查看</a>
-                <a style="color:rgba(19, 206, 102)" href="#/artical/list">返回列表</a>
+                <a style="color:rgba(19, 206, 102)" href="#/article/list">返回列表</a>
             </div>
         </div>
     </div>
@@ -175,10 +175,6 @@ export default {
   font-size: 14px;
   margin-right: 10px;
   float: left;
-}
-.editor {
-    height:800px;
-    max-height:500px;
 }
 .filter-container .filter-item label {
   font-weight: normal;

@@ -66,10 +66,10 @@ export const constantRouterMap = [
   },
 
   {
-    path: '/artical',
+    path: '/article',
     component: Layout,
-    redirect: '/artical/list',
-    name: 'artical',
+    redirect: '/article/list',
+    name: 'article',
     meta: { title: '文章管理', icon: 'form' },
     children: [
       {
@@ -84,6 +84,13 @@ export const constantRouterMap = [
         name: 'add',
         component: () => import('@/views/article/add'),
         meta: { title: '新增文章' }
+      },
+      {
+        hidden: true,
+        path: 'load',
+        name: 'load',
+        component: () => import('@/views/article/details'),
+        meta: { title: '文章详情' }
       }
     ]
   },

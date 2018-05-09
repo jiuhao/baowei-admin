@@ -15,3 +15,20 @@ export function add(data) {
     data: data
   })
 }
+
+export function load(data) {
+  return request({
+    url: 'admin/article/load',
+    method: 'post',
+    data: data
+  })
+}
+
+export function update(data) {
+  return request({
+    url: 'admin/article/update',
+    method: 'post',
+    data: data
+  })
+}
+

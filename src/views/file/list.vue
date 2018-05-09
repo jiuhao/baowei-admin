@@ -25,7 +25,33 @@
         <div class="filter-item">
           <el-button type="primary" size="small" icon="el-icon-search" @click="handleFilter">查询</el-button>
         </div>
+        <div class="filter-item">
+          <el-button type="primary" size="small" icon="el-icon-upload" @click="dialogVisible = true">上传</el-button>
+        </div>
     </div>
+    <el-dialog
+      title="上传文件面板"
+      :visible.sync="dialogVisible"
+      width="50%">
+      <el-upload
+        class="upload-demo"
+        :headers="{'X-Token': token}"
+        :action="uploadUrl"
+        :on-preview="handlePreview"
+        :on-remove="handleRemove"
+        :before-remove="beforeRemove"
+        multiple
+        :limit="5"
+        :on-exceed="handleExceed"
+        :file-list="fileList">
+        <el-button size="small" type="primary">点击上传</el-button>
+        <div slot="tip" class="el-upload__tip">可上传图片和office文档</div>
+      </el-upload>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false" size="small">取 消</el-button>
+        <el-button type="primary" @click="dialogVisible = false" size="small">确 定</el-button>
+      </span>
+    </el-dialog>
     <el-table :data="list" v-loading.body="listLoading" element-loading-text="Loading" border fit highlight-current-row>
       <el-table-column align="center" width="50" label='序号'>
         <template slot-scope="scope">
@@ -39,7 +65,7 @@
       </el-table-column>
       <el-table-column label="路径"  align="center">
         <template slot-scope="scope">
-          <span>{{scope.row.url}}</span>
+          <a :href="scope.row.url">{{scope.row.url}}</a>
         </template>
       </el-table-column>
       <el-table-column label="是否发布到前台" align="center">
@@ -67,6 +93,7 @@
 
 <script>
 import { getList } from '@/api/file'
+import { getToken } from '@/utils/auth'
 
 const is_public_show_options = [
   { label: '否', key: 0 },
@@ -83,6 +110,10 @@ export default {
   },
   data() {
     return {
+      token: getToken(),
+      fileList: [],
+      uploadUrl: process.env.BASE_API + '/admin/file/add',
+      dialogVisible: false,
       list: null,
       listLoading: true,
       listQuery: {
@@ -123,6 +154,18 @@ export default {
     handleFilter() {
       this.listQuery.currentPage = 1
       this.getList()
+    },
+    handleRemove(file, fileList) {
+      console.log(file, fileList)
+    },
+    handlePreview(file) {
+      console.log(file)
+    },
+    handleExceed(files, fileList) {
+      this.$message.warning(`当前限制选择 5 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`)
+    },
+    beforeRemove(file, fileList) {
+      return this.$confirm(`确定移除 ${file.name}？`)
     }
   }
 }
@@ -146,5 +189,8 @@ export default {
 }
 .filter-container .filter-item label {
   font-weight: normal;
+}
+a:hover{
+ text-decoration:underline;  /*鼠标放上去有下划线*/
 }
 </style>

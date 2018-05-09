@@ -26,7 +26,7 @@
           <el-button type="primary" size="small" icon="el-icon-search" @click="handleFilter">查询</el-button>
         </div>
         <div class="filter-item">
-          <el-button type="primary" size="small" icon="el-icon-plus" ><a href="#/artical/add">添加</a></el-button>
+          <el-button type="primary" size="small" icon="el-icon-plus" ><a href="#/article/add">添加</a></el-button>
         </div>
     </div>
     <el-table :data="list" v-loading.body="listLoading" element-loading-text="Loading" border fit highlight-current-row>
@@ -37,7 +37,7 @@
       </el-table-column>
       <el-table-column label="标题" align="center">
         <template slot-scope="scope">
-          {{scope.row.title}}
+          <a :href="'#/article/load?id=' + scope.row.id">{{scope.row.title}}</a>
         </template>
       </el-table-column>
       <el-table-column label="子标题"  align="center">
@@ -184,5 +184,8 @@ export default {
 }
 .filter-container .filter-item label {
   font-weight: normal;
+}
+a:hover{
+ text-decoration:underline;  /*鼠标放上去有下划线*/
 }
 </style>
